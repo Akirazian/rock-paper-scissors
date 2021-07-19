@@ -57,14 +57,14 @@ function game() {
     } else if (result === false) {
       computerScore++;
     }
-    console.log ("Player: " + playerScore + " / Computer: " + computerScore);
+    console.log (`Player: ${playerScore} / Computer: ${computerScore}`);
   }
 
- if (playerScore > computerScore) {
-   console.log("Congratulations, you've beaten the Computer!")
- } else if (playerScore === computerScore) {
-   console.log("Sorry folks, it's a tie!");
- } else {
-   console.log("Oof, the Computer has beaten you!");
- }
+  if (playerScore > computerScore) {
+    console.log("Congratulations, you've beaten the Computer!")
+  } else if (playerScore === computerScore) {
+    console.log("Sorry folks, it's a tie!");
+  } else {
+    console.log("Oof, the Computer has beaten you!");
+  }
 }
