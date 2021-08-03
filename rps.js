@@ -39,29 +39,29 @@ function playRound (event) {
   let computerSelection = computerPlay();
   let selection = event.target.id;
   if (computerSelection === selection) { // If it's a draw
-    results.innerHTML = "You both picked " + selection + ", It's a draw!";
+    results.innerText = "You both picked " + selection + ", It's a draw!";
     return "draw"
   } else if (computerSelection === "rock" && selection === "paper") {
-    results.innerHTML = "You win! Paper beats Rock!";
+    results.innerText = "You win! Paper beats Rock!";
     playerScore++;
   } else if (computerSelection === "rock" && selection === "scissors") {
-    results.innerHTML = "You lose! Rock beats Scissors!";
+    results.innerText = "You lose! Rock beats Scissors!";
     computerScore++;
   } else if (computerSelection === "paper" && selection === "rock") {
-    results.innerHTML = "You lose! Paper beats Rock!";
+    results.innerText = "You lose! Paper beats Rock!";
     computerScore++;
   } else if (computerSelection === "paper" && selection === "scissors") {
-    results.innerHTML = "You win! Scissors beat Paper!";
+    results.innerText = "You win! Scissors beat Paper!";
     playerScore++;
   } else if (computerSelection === "scissors" && selection === "rock") {
-    results.innerHTML = "You win! Rock beats Scissors!";
+    results.innerText = "You win! Rock beats Scissors!";
     playerScore++;
   } else if (computerSelection === "scissors" && selection === "paper") {
-    results.innerHTML = "You lose! Scissors beats paper!";
+    results.innerText = "You lose! Scissors beats paper!";
     computerScore++;
   }
 
-  score.innerHTML = `Player: ${playerScore} / Computer: ${computerScore}`;
+  score.innerText = `Player: ${playerScore} / Computer: ${computerScore}`;
 
   if (playerScore >= 5 || computerScore >= 5) {
     rockButton.removeEventListener("click", playRound);
@@ -69,11 +69,11 @@ function playRound (event) {
     scissorsButton.removeEventListener("click", playRound);
 
     if (playerScore > computerScore) {
-      final.innerHTML = "Congratulations, you've beaten the Computer!";
+      final.innerText = "Congratulations, you've beaten the Computer!";
     } else if (playerScore === computerScore) {
-      final.innerHTML = "Sorry folks, it's a tie!";
+      final.innerText = "Sorry folks, it's a tie!";
     } else {
-      final.innerHTML = "Oof, the Computer has beaten you!";
+      final.innerText = "Oof, the Computer has beaten you!";
     }
 
     let resetButton = document.createElement('button');
@@ -93,9 +93,9 @@ function reset() {
 
   playerScore = 0;
   computerScore = 0;
-  score.innerHTML = "Player: 0 / Computer: 0";
-  results.innerHTML = "";
-  final.innerHTML = "";
+  score.innerText = "Player: 0 / Computer: 0";
+  results.innerText = "";
+  final.innerText = "";
 
   let resetButton = document.getElementById("reset");
 
