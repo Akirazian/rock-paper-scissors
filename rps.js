@@ -20,51 +20,85 @@ function computerPlay() {
   return comp;
 }
 
-function playRound (playerSelection) {
+const rockButton = document.getElementById("rock");
+const paperButton = document.getElementById("paper");
+const scissorsButton = document.getElementById("scissors");
+
+const results = document.getElementById("results");
+const score = document.getElementById("score");
+const final = document.getElementById("final");
+
+rockButton.addEventListener("click", playRound);
+paperButton.addEventListener("click", playRound);
+scissorsButton.addEventListener("click", playRound);
+
+let playerScore = 0;
+let computerScore = 0;
+
+function playRound (event) {
   let computerSelection = computerPlay();
-  let selection = playerSelection.toLowerCase();
+  let selection = event.target.id;
   if (computerSelection === selection) { // If it's a draw
-    console.log( "You both picked " + selection + ", It's a draw!");
+    results.innerHTML = "You both picked " + selection + ", It's a draw!";
     return "draw"
   } else if (computerSelection === "rock" && selection === "paper") {
-    console.log( "You win! Paper beats Rock!");
-    return true
+    results.innerHTML = "You win! Paper beats Rock!";
+    playerScore++;
   } else if (computerSelection === "rock" && selection === "scissors") {
-    console.log( "You lose! Rock beats Scissors!");
-    return false;
+    results.innerHTML = "You lose! Rock beats Scissors!";
+    computerScore++;
   } else if (computerSelection === "paper" && selection === "rock") {
-    console.log( "You lose! Paper beats Rock!");
-    return false;
+    results.innerHTML = "You lose! Paper beats Rock!";
+    computerScore++;
   } else if (computerSelection === "paper" && selection === "scissors") {
-    console.log( "You win! Scissors beat Paper!");
-    return true;
+    results.innerHTML = "You win! Scissors beat Paper!";
+    playerScore++;
   } else if (computerSelection === "scissors" && selection === "rock") {
-    console.log( "You win! Rock beats Scissors!");
-    return true;
+    results.innerHTML = "You win! Rock beats Scissors!";
+    playerScore++;
   } else if (computerSelection === "scissors" && selection === "paper") {
-    console.log( "You lose! Scissors beats paper!");
-    return false;
+    results.innerHTML = "You lose! Scissors beats paper!";
+    computerScore++;
+  }
+
+  score.innerHTML = `Player: ${playerScore} / Computer: ${computerScore}`;
+
+  if (playerScore >= 5 || computerScore >= 5) {
+    rockButton.removeEventListener("click", playRound);
+    paperButton.removeEventListener("click", playRound);
+    scissorsButton.removeEventListener("click", playRound);
+
+    if (playerScore > computerScore) {
+      final.innerHTML = "Congratulations, you've beaten the Computer!";
+    } else if (playerScore === computerScore) {
+      final.innerHTML = "Sorry folks, it's a tie!";
+    } else {
+      final.innerHTML = "Oof, the Computer has beaten you!";
+    }
+
+    let resetButton = document.createElement('button');
+    resetButton.id = "reset";
+    resetButton.innerText = "Play Again?";
+    resetButton.addEventListener("click", reset);
+
+    document.querySelector("main").appendChild(resetButton);
+
   }
 }
 
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-  for (i=0; playerScore < 5 && computerScore < 5; i++) {
-    let result = playRound(prompt("Rock, Paper or Scissors?"));
-    if (result === true) {
-      playerScore++;
-    } else if (result === false) {
-      computerScore++;
-    }
-    console.log (`Player: ${playerScore} / Computer: ${computerScore}`);
-  }
+function reset() {
+  rockButton.addEventListener("click", playRound);
+  paperButton.addEventListener("click", playRound);
+  scissorsButton.addEventListener("click", playRound);
 
-  if (playerScore > computerScore) {
-    console.log("Congratulations, you've beaten the Computer!")
-  } else if (playerScore === computerScore) {
-    console.log("Sorry folks, it's a tie!");
-  } else {
-    console.log("Oof, the Computer has beaten you!");
-  }
+  playerScore = 0;
+  computerScore = 0;
+  score.innerHTML = "Player: 0 / Computer: 0";
+  results.innerHTML = "";
+  final.innerHTML = "";
+
+  let resetButton = document.getElementById("reset");
+
+  document.querySelector("main").removeChild(resetButton);
+
 }
