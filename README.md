@@ -1,2 +1,2 @@
 # rock-paper-scissors
-A Rock Paper Scissors Game in Vanilla JS
+A Rock Paper Scissors Game in Vanilla JS featuring basic DOM manipulation.
