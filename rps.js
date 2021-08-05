@@ -39,7 +39,7 @@ function playRound (event) {
   let computerSelection = computerPlay();
   let selection = event.target.id;
   if (computerSelection === selection) { // If it's a draw
-    results.innerText = "You both picked " + selection + ", It's a draw!";
+    results.innerText = `You both picked ${selection}, It's a draw!`;
     return "draw"
   } else if (computerSelection === "rock" && selection === "paper") {
     results.innerText = "You win! Paper beats Rock!";
@@ -57,7 +57,7 @@ function playRound (event) {
     results.innerText = "You win! Rock beats Scissors!";
     playerScore++;
   } else if (computerSelection === "scissors" && selection === "paper") {
-    results.innerText = "You lose! Scissors beats paper!";
+    results.innerText = "You lose! Scissors beats Paper!";
     computerScore++;
   }
 
